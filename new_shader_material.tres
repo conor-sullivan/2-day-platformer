@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d02pn48ruy3km"]
+
+[ext_resource type="Shader" path="res://player_flash.gdshader" id="1_p4fuk"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_p4fuk")
+shader_parameter/speed = 0.0
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/span = 1.0

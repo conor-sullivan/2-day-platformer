@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3 uid="uid://t2j8v16dyd8u"]
+
+[ext_resource type="PackedScene" uid="uid://bn4rvh378rro8" path="res://tile_map.tscn" id="1_4dmbw"]
+[ext_resource type="Script" path="res://level.gd" id="1_n5g5v"]
+[ext_resource type="PackedScene" uid="uid://caflurr66ahuy" path="res://player.tscn" id="2_cj8oj"]
+[ext_resource type="Shader" path="res://player_flash.gdshader" id="3_w4wq3"]
+[ext_resource type="Texture2D" uid="uid://blc226qmgxeij" path="res://ParralaxLayers/SkyLayer6.png" id="5_fs7ae"]
+[ext_resource type="Texture2D" uid="uid://d4hvsiabfw6a7" path="res://ParralaxLayers/SunLayer5.png" id="6_dubmw"]
+[ext_resource type="Texture2D" uid="uid://dbobkcswe6xi1" path="res://ParralaxLayers/CloudsLayerLayer4.png" id="7_lb7nq"]
+[ext_resource type="Texture2D" uid="uid://bakhbdhv3gegt" path="res://ParralaxLayers/GroundLayer3.png" id="8_cecqi"]
+[ext_resource type="Texture2D" uid="uid://bc745480q1gol" path="res://ParralaxLayers/GroundLayer2.png" id="9_g3rkw"]
+[ext_resource type="Texture2D" uid="uid://d17714cofl0ih" path="res://ParralaxLayers/GroundLayer1.png" id="10_c0mvf"]
+[ext_resource type="PackedScene" uid="uid://oovcxmx0abm1" path="res://level_complete.tscn" id="11_8b2nf"]
+[ext_resource type="AudioStream" uid="uid://cgyxafedlcn3b" path="res://song18.mp3" id="13_r4dlt"]
+[ext_resource type="Texture2D" uid="uid://swx27y33cwif" path="res://white_heart.png" id="14_l85bj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03ki0"]
+resource_local_to_scene = true
+shader = ExtResource("3_w4wq3")
+shader_parameter/speed = 0.5
+shader_parameter/tint = Color(1, 0.239216, 0.890196, 1)
+shader_parameter/span = 1.0
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_n5g5v")
+
+[node name="TileMap" parent="." instance=ExtResource("1_4dmbw")]
+
+[node name="Player" parent="." instance=ExtResource("2_cj8oj")]
+material = SubResource("ShaderMaterial_03ki0")
+position = Vector2(17, 99)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 89)
+motion_scale = Vector2(0.2, 1)
+motion_offset = Vector2(0, -300)
+motion_mirroring = Vector2(1100, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(0, -200)
+scale = Vector2(5, 5)
+texture = ExtResource("5_fs7ae")
+
+[node name="Sun" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(189, 26)
+motion_scale = Vector2(0.1, 1)
+motion_mirroring = Vector2(2000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sun"]
+position = Vector2(-382, -316)
+texture = ExtResource("6_dubmw")
+
+[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Clouds"]
+position = Vector2(0, -100)
+scale = Vector2(3, 3)
+texture = ExtResource("7_lb7nq")
+
+[node name="Ground1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Ground1"]
+position = Vector2(0, -75)
+scale = Vector2(3, 3)
+texture = ExtResource("8_cecqi")
+
+[node name="Ground2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Ground2"]
+position = Vector2(0, -50)
+scale = Vector2(3, 3)
+texture = ExtResource("9_g3rkw")
+
+[node name="Ground3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Ground3"]
+scale = Vector2(3, 3)
+texture = ExtResource("10_c0mvf")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="HeartsCollectedSprite" type="Sprite2D" parent="HUD"]
+position = Vector2(6, 9)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_l85bj")
+
+[node name="HeartsCollectedLabel" type="Label" parent="HUD"]
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelComplete" parent="CanvasLayer" instance=ExtResource("11_8b2nf")]
+visible = false
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_r4dlt")

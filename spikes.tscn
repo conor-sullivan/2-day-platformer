@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0edo58rs6ils"]
+
+[ext_resource type="Texture2D" uid="uid://boy60bd25sqdk" path="res://mellowplatformertileset.png" id="1_afha6"]
+[ext_resource type="PackedScene" uid="uid://cdx3wlaths6kt" path="res://hazard_area.tscn" id="2_u4a6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t42u6"]
+atlas = ExtResource("1_afha6")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3r0d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t42u6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jidj4"]
+size = Vector2(20, 9)
+
+[node name="Spikes" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p3r0d")
+
+[node name="HazardArea" parent="." instance=ExtResource("2_u4a6d")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2(0, 3.5)
+scale = Vector2(1.39385, 1)
+shape = SubResource("RectangleShape2D_jidj4")

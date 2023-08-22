@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1jjp5punj2j"]
+
+[ext_resource type="Script" path="res://game_complete.gd" id="1_v3gch"]
+
+[node name="GameComplete" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188235, 0.188235, 0.188235, 0.698039)
+script = ExtResource("1_v3gch")
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer2/VBoxContainer"]
+layout_mode = 2
+text = "All Levels Completed"
+
+[node name="Button" type="Button" parent="CenterContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
